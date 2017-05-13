@@ -269,8 +269,11 @@ class SubViewController: UIViewController {
             self.viewDidLoad()
             progress.stopAnimation()
         }
+        
+        
     
 }
+
 
 //    @IBAction func onBackButtonClicked(_ sender: Any) {
         

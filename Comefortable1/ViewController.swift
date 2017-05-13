@@ -111,7 +111,20 @@ class ViewController: UIViewController {
         image3.image = UIImage(named: exercises[2].image)
         image4.image = UIImage(named: exercises[3].image)
         exerciseSegmentControl.selectedSegmentIndex = 0
-        labelText.text = "During the Exercise duration this text and the corresponding picture will be updated. Take a deep breath and wait an initial duration period."
+        labelText.text = "Place your right hand against the right side of your head and press against your head at the same time you push your head against your hand."
+        
+        progress = KDCircularProgress(frame: CGRect(x: 60, y: 320, width: 255, height: 270))
+        progress.startAngle = -90
+        progress.progressThickness = 0.1
+        progress.trackThickness = 0.2
+        progress.clockwise = true
+        progress.gradientRotateSpeed = 0
+        progress.roundedCorners = false
+        progress.glowMode = .forward
+        progress.glowAmount = 0.9
+        progress.set(colors: UIColor.cyan ,UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
+        //progress.center = CGPoint(x: view.center.x, y: view.center.y + 55)
+        view.addSubview(progress)
         
         do{
             let audioPath = Bundle.main.path(forResource: "silk", ofType: ".mp3")
@@ -129,21 +142,10 @@ class ViewController: UIViewController {
         if musicFlag {
             audioPlayer.play()
         }
-        progress = KDCircularProgress(frame: CGRect(x: 60, y: 320, width: 255, height: 270))
-        progress.startAngle = -90
-        progress.progressThickness = 0.1
-        progress.trackThickness = 0.2
-        progress.clockwise = true
-        progress.gradientRotateSpeed = 0
-        progress.roundedCorners = false
-        progress.glowMode = .forward
-        progress.glowAmount = 0.9
-        progress.set(colors: UIColor.cyan ,UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
-        //progress.center = CGPoint(x: view.center.x, y: view.center.y + 55)
-        view.addSubview(progress)
+ 
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.timeElapsed), userInfo: nil, repeats: true)
-         //progressTimeAnimater()
+        progressTimeAnimater()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -168,6 +170,13 @@ class ViewController: UIViewController {
             
             if ((currentAdvance % 4) == 0) && (currentAdvance != 0){
                 exerciseSegmentControl.selectedSegmentIndex += 1
+                 print("exerciseSegmentControl.selectedSegmentIndex += 1" )
+            }
+            
+            if ((currentAdvance % 4) == 0) && (currentAdvance == 0) && (exerciseSegmentControl.selectedSegmentIndex == 0){
+                
+                currentAdvance += 1
+                print("exerciseSegmentControl.selectedSegmentIndex += 1" )
             }
             counter = counterConstant
             
@@ -435,15 +444,19 @@ class ViewController: UIViewController {
     }
     
     internal func endExercise(){
-        
+        counterLbl.text = String(0)
+        image0.image = #imageLiteral(resourceName: "eye4")
+        labelText.text =  "Rest your eyes by staring at the Picture for a while."
+        print("timer.invalidate()")
         timer.invalidate()
-        counter = counterConstant
-        counterLbl.text = String(counter)
-        
-        print("In End Exercise :timer.invalidate()")
-        //  audioPlayer.stop()
-        perform(#selector(terminateAudio), with: nil, afterDelay: 8)
-        
+        perform(#selector(terminateAudio), with: nil, afterDelay: 20)
+        progress.animate(fromAngle: 0, toAngle: 360, duration: 20.0) { completed in
+            if completed {
+                print("animation stopped, completed")
+            } else {
+                print("animation stopped, was interrupted")
+            }
+        }
         
     }
     internal func terminateAudio(){
@@ -462,8 +475,6 @@ class ViewController: UIViewController {
         counterLbl.text = String(counter)
         audioPlayer.stop()
     }
-    
-    
     
     @IBAction func stopButtonTapped(_ sender: Any) {
         
