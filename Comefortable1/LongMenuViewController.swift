@@ -142,7 +142,6 @@ class LongMenuViewController: UIViewController {
             audioPlayer.play()
         }
         
-        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.timeElapsed), userInfo: nil, repeats: true)
         progressTimeAnimater()
         //self.navigationController?.navigationBar.isHidden = true
