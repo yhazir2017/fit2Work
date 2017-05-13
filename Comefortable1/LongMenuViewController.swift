@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LongMenuViewController.swift
 //  Comefortable1
 //
 //  Created by YILDIRAY HAZIR on 4/10/17.
@@ -10,38 +10,37 @@ import UIKit
 import AVFoundation
 import KDCircularProgress
 
-class ViewController: UIViewController {
+class LongMenuViewController: UIViewController {
     var progress: KDCircularProgress!
     
-    
+ 
     @IBOutlet weak var counterLbl: UILabel!
     
-    
     @IBOutlet weak var uiview0: UIView!
-    
-    
+
     @IBOutlet weak var uiview1: UIView!
     
     @IBOutlet weak var uiview2: UIView!
     
     @IBOutlet weak var uiview3: UIView!
     
-    
     @IBOutlet weak var uiview4: UIView!
     
-    
     @IBOutlet weak var image0: UIImageView!
+    
     @IBOutlet weak var image1: UIImageView!
+    
     @IBOutlet weak var image2: UIImageView!
+    
     @IBOutlet weak var image3: UIImageView!
+    
     @IBOutlet weak var image4: UIImageView!
     
     @IBOutlet weak var labelText: UILabel!
-    
-    @IBOutlet weak var exerciseSegmentControl: UISegmentedControl!
-    
+
     @IBOutlet weak var stopButton: UIButton!
     
+    @IBOutlet weak var exerciseSegmentControl: UISegmentedControl!
     
     var counterConstant = 2
     var counter : Int = 0
@@ -476,7 +475,7 @@ class ViewController: UIViewController {
         audioPlayer.stop()
     }
     
-    @IBAction func stop(_ sender: Any) {
+    @IBAction func stopButtonClicked(_ sender: Any) {
         print("stop")
         if (stopButton.currentImage?.isEqual(UIImage(named:"stop.png")))!{
             print("stop")
@@ -497,6 +496,6 @@ class ViewController: UIViewController {
             self.viewDidLoad()
         }
     }
-    
+       
 }
 
