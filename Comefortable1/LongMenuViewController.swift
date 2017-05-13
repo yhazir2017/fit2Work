@@ -12,7 +12,7 @@ import KDCircularProgress
 
 class ViewController: UIViewController {
     var progress: KDCircularProgress!
-
+    
     
     @IBOutlet weak var counterLbl: UILabel!
     
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
     var counter : Int = 0
     var currentAdvance = 0
     var musicFlag = false
-
+    
     var timer = Timer()
     var audioPlayer = AVAudioPlayer()
     
@@ -83,9 +83,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        
         //let prefs = UserDefaults.standard
-
+        
         let exerciseLength = prefs.integer(forKey: "exerciseLength")
         
         switch exerciseLength {
@@ -138,11 +138,11 @@ class ViewController: UIViewController {
         
         musicFlag = prefs.bool(forKey: "musicFlag")
         print ("Music Flag after read \(musicFlag)")
-
+        
         if musicFlag {
             audioPlayer.play()
         }
- 
+        
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.timeElapsed), userInfo: nil, repeats: true)
         progressTimeAnimater()
@@ -170,7 +170,7 @@ class ViewController: UIViewController {
             
             if ((currentAdvance % 4) == 0) && (currentAdvance != 0){
                 exerciseSegmentControl.selectedSegmentIndex += 1
-                 print("exerciseSegmentControl.selectedSegmentIndex += 1" )
+                print("exerciseSegmentControl.selectedSegmentIndex += 1" )
             }
             
             if ((currentAdvance % 4) == 0) && (currentAdvance == 0) && (exerciseSegmentControl.selectedSegmentIndex == 0){
@@ -202,7 +202,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 0 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 2:
                     uiview3.backgroundColor = UIColor.red
                     uiview2.backgroundColor = UIColor.white
@@ -211,7 +211,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 0 Case 2: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 3:
                     uiview4.backgroundColor = UIColor.red
                     uiview3.backgroundColor = UIColor.white
@@ -243,7 +243,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 1 Case 0: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 case 1:
                     uiview2.backgroundColor = UIColor.red
@@ -253,7 +253,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 1 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 2:
                     uiview3.backgroundColor = UIColor.red
                     uiview2.backgroundColor = UIColor.white
@@ -262,7 +262,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 1 Case 2: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 3:
                     uiview4.backgroundColor = UIColor.red
                     uiview3.backgroundColor = UIColor.white
@@ -272,7 +272,7 @@ class ViewController: UIViewController {
                     //exerciseSegmentControl.selectedSegmentIndex += 1
                     print("Seg : 1 Case 3: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 default: break
                 }
@@ -294,7 +294,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 2 Case 0: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 case 1:
                     uiview2.backgroundColor = UIColor.red
@@ -304,7 +304,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 2 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 2:
                     uiview3.backgroundColor = UIColor.red
                     uiview2.backgroundColor = UIColor.white
@@ -313,7 +313,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 2 Case 2: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 3:
                     uiview4.backgroundColor = UIColor.red
                     uiview3.backgroundColor = UIColor.white
@@ -323,7 +323,7 @@ class ViewController: UIViewController {
                     //exerciseSegmentControl.selectedSegmentIndex += 1
                     print("Seg : 2 Case 3: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 default: break
                 }
@@ -345,7 +345,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 3 Case 0: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 case 1:
                     uiview2.backgroundColor = UIColor.red
@@ -355,7 +355,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 3 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 2:
                     uiview3.backgroundColor = UIColor.red
                     uiview2.backgroundColor = UIColor.white
@@ -364,7 +364,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 3 Case 2: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 3:
                     uiview4.backgroundColor = UIColor.red
                     uiview3.backgroundColor = UIColor.white
@@ -374,7 +374,7 @@ class ViewController: UIViewController {
                     //exerciseSegmentControl.selectedSegmentIndex += 1
                     print("Seg : 3 Case 3: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 default: break
                 }
@@ -396,7 +396,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 4 Case 0: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                     
                 case 1:
                     uiview2.backgroundColor = UIColor.red
@@ -406,7 +406,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 4 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 2:
                     uiview3.backgroundColor = UIColor.red
                     uiview2.backgroundColor = UIColor.white
@@ -415,7 +415,7 @@ class ViewController: UIViewController {
                     currentAdvance += 1
                     print("Seg : 4 Case 2: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
-
+                    
                 case 3:
                     uiview4.backgroundColor = UIColor.red
                     uiview3.backgroundColor = UIColor.white
@@ -425,7 +425,7 @@ class ViewController: UIViewController {
                     
                     print("Seg : 4 Case 3: => currentAdvance : \(currentAdvance) \n " )
                     print(" EYE : endExercise()")
-                
+                    
                     if (currentAdvance == 20){
                         print("endExercise()")
                         
@@ -497,6 +497,6 @@ class ViewController: UIViewController {
             self.viewDidLoad()
         }
     }
-
+    
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60B44C91EC75EE600174083 /* LongMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60B44C81EC75EE600174083 /* LongMenuViewController.swift */; };
+		D60D66111EC6C02200B8E9D6 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60D66101EC6C02200B8E9D6 /* MyViewController.swift */; };
 		D664F14A1E9C08130091C2DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D664F1491E9C08130091C2DB /* AppDelegate.swift */; };
 		D664F14C1E9C08130091C2DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D664F14B1E9C08130091C2DB /* ViewController.swift */; };
 		D664F14F1E9C08130091C2DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D664F14D1E9C08130091C2DB /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		9AB856613BCEE3F8990236DC /* Pods-Comefortable1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comefortable1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Comefortable1/Pods-Comefortable1.debug.xcconfig"; sourceTree = "<group>"; };
 		C2CEB9E9DEDB3EC736FBFE41 /* Pods_Comefortable1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comefortable1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60B44C81EC75EE600174083 /* LongMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongMenuViewController.swift; sourceTree = "<group>"; };
+		D60D66101EC6C02200B8E9D6 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		D664F1461E9C08130091C2DB /* Comefortable1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comefortable1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D664F1491E9C08130091C2DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D664F14B1E9C08130091C2DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				D664F15F1EA672520091C2DB /* Exercise.swift */,
 				D664F1491E9C08130091C2DB /* AppDelegate.swift */,
 				D664F14B1E9C08130091C2DB /* ViewController.swift */,
+				D60B44C81EC75EE600174083 /* LongMenuViewController.swift */,
 				D664F15D1EA5DE710091C2DB /* SubViewController.swift */,
 				D664F1611EA940C00091C2DB /* SWRevealViewController.h */,
 				D664F1631EA940E30091C2DB /* SWRevealViewController.m */,
@@ -139,6 +144,7 @@
 				D664F1751EAC73540091C2DB /* LoginViewController.swift */,
 				D664F1771EAC7FEB0091C2DB /* RegisterViewController.swift */,
 				D664F1791EAD61A40091C2DB /* LoginRegisterViewController.swift */,
+				D60D66101EC6C02200B8E9D6 /* MyViewController.swift */,
 			);
 			path = Comefortable1;
 			sourceTree = "<group>";
@@ -273,6 +279,7 @@
 				D664F15E1EA5DE710091C2DB /* SubViewController.swift in Sources */,
 				D664F1661EA9CB2F0091C2DB /* MenuViewController.swift in Sources */,
 				D664F1601EA672520091C2DB /* Exercise.swift in Sources */,
+				D60D66111EC6C02200B8E9D6 /* MyViewController.swift in Sources */,
 				D664F1641EA940E30091C2DB /* SWRevealViewController.m in Sources */,
 				D664F16E1EAB8F0B0091C2DB /* HelpViewController.swift in Sources */,
 				D664F14C1E9C08130091C2DB /* ViewController.swift in Sources */,
@@ -285,6 +292,7 @@
 				D67B86401EBC179D000AD681 /* SettingRoutineVC.swift in Sources */,
 				D67B863E1EBBF769000AD681 /* SettingsLengthVC.swift in Sources */,
 				D664F1761EAC73540091C2DB /* LoginViewController.swift in Sources */,
+				D60B44C91EC75EE600174083 /* LongMenuViewController.swift in Sources */,
 				D664F16C1EAB8EE90091C2DB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
