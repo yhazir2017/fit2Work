@@ -64,18 +64,62 @@ class SubViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
         counter = counterConstant
         uiview0.backgroundColor = UIColor.red
-        uiview1.backgroundColor = UIColor.red
         
+        
+        switch (currentAdvance % 5){
+        case 0:
+            uiview1.backgroundColor = UIColor.red
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
+            uiview5.backgroundColor = UIColor.white
+            exerciseSegmentControl.selectedSegmentIndex = 0
+        case 1:
+            
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.red
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
+            uiview5.backgroundColor = UIColor.white
+            exerciseSegmentControl.selectedSegmentIndex = 1
+        case 2:
+            
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.red
+            uiview4.backgroundColor = UIColor.white
+            uiview5.backgroundColor = UIColor.white
+            exerciseSegmentControl.selectedSegmentIndex = 2
+        case 3:
+            
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.red
+            uiview5.backgroundColor = UIColor.white
+            exerciseSegmentControl.selectedSegmentIndex = 3
+        case 4:
+            
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
+            uiview5.backgroundColor = UIColor.red
+            exerciseSegmentControl.selectedSegmentIndex = 4
+        default: break
+        }
+        image0.image = UIImage(named: exercises[currentAdvance].image)
         counterLbl.text = String(counter)
-        image0.image = UIImage(named: exercises[0].image)
+        //image0.image = UIImage(named: exercises[0].image)
         image1.image = UIImage(named: exercises[0].image)
         image2.image = UIImage(named: exercises[1].image)
         image3.image = UIImage(named: exercises[2].image)
         image4.image = UIImage(named: exercises[3].image)
         image5.image = UIImage(named: exercises[4].image)
-        exerciseSegmentControl.selectedSegmentIndex = 0
+        //exerciseSegmentControl.selectedSegmentIndex = 0
         
         image0.layer.cornerRadius = image0.frame.size.width/2
         image0.clipsToBounds = true
@@ -96,12 +140,12 @@ class SubViewController: UIViewController {
         image5.layer.cornerRadius = image5.frame.size.width/2
         image5.clipsToBounds = true
         
-        uiview1.backgroundColor = UIColor.red
-        uiview2.backgroundColor = UIColor.white
-        uiview3.backgroundColor = UIColor.white
-        uiview4.backgroundColor = UIColor.white
-        uiview5.backgroundColor = UIColor.white
-        
+//        uiview1.backgroundColor = UIColor.red
+//        uiview2.backgroundColor = UIColor.white
+//        uiview3.backgroundColor = UIColor.white
+//        uiview4.backgroundColor = UIColor.white
+//        uiview5.backgroundColor = UIColor.white
+//        
         
         do{
             let audioPath = Bundle.main.path(forResource: "silk", ofType: ".mp3")
@@ -137,7 +181,7 @@ class SubViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(SubViewController.timeElapsed), userInfo: nil, repeats: true)
        
         progressTimeAnimater()
-        //self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         
     }
     internal func progressTimeAnimater() {
@@ -226,19 +270,21 @@ class SubViewController: UIViewController {
         counterLbl.text = String(counter)
     }
     internal func endExercise(){
-        counterLbl.text = String(0)
+        counterLbl.text = String(counter)
         image0.image = #imageLiteral(resourceName: "eye4")
         textLabel.text =  "Rest your eyes by staring at the Picture for a while."
         print("timer.invalidate()")
         timer.invalidate()
         perform(#selector(terminateAudio), with: nil, afterDelay: 20)
-        progress.animate(fromAngle: 0, toAngle: 360, duration: 20.0) { completed in
+        progress.animate(fromAngle: 0, toAngle: 360, duration: 10.0) { completed in
             if completed {
                 print("animation stopped, completed")
             } else {
                 print("animation stopped, was interrupted")
             }
         }
+        uiview0.backgroundColor = UIColor.white
+        uiview5.backgroundColor = UIColor.white
         
     }
     internal func terminateAudio(){
@@ -260,6 +306,19 @@ class SubViewController: UIViewController {
             let image = UIImage(named: "start.png")
             stopButton.setImage(image, for: .normal)
             progress.stopAnimation()
+            uiview0.backgroundColor = UIColor.white
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
+            progress.animate(fromAngle: 0, toAngle: 360, duration: 10.0) { completed in
+                if completed {
+                    print("animation stopped, completed")
+                } else {
+                    print("animation stopped, was interrupted")
+                }
+            }
+
             
         }
         else if (stopButton.currentImage?.isEqual(UIImage(named:"start.png")))!{
@@ -267,7 +326,7 @@ class SubViewController: UIViewController {
             let image = UIImage(named: "stop.png")
             stopButton.setImage(image, for: .normal)
             self.viewDidLoad()
-            progress.stopAnimation()
+            progressTimeAnimater()
         }
         
         

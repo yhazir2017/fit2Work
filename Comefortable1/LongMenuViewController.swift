@@ -13,11 +13,11 @@ import KDCircularProgress
 class LongMenuViewController: UIViewController {
     var progress: KDCircularProgress!
     
- 
+    
     @IBOutlet weak var counterLbl: UILabel!
     
     @IBOutlet weak var uiview0: UIView!
-
+    
     @IBOutlet weak var uiview1: UIView!
     
     @IBOutlet weak var uiview2: UIView!
@@ -37,14 +37,16 @@ class LongMenuViewController: UIViewController {
     @IBOutlet weak var image4: UIImageView!
     
     @IBOutlet weak var labelText: UILabel!
-
+    
+    
     @IBOutlet weak var stopButton: UIButton!
     
     @IBOutlet weak var exerciseSegmentControl: UISegmentedControl!
     
+    
     var counterConstant = 2
     var counter : Int = 0
-    var currentAdvance = 0
+    var currentAdvance = 1
     var musicFlag = false
     
     var timer = Timer()
@@ -81,10 +83,7 @@ class LongMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //let prefs = UserDefaults.standard
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
         let exerciseLength = prefs.integer(forKey: "exerciseLength")
         
         switch exerciseLength {
@@ -97,21 +96,122 @@ class LongMenuViewController: UIViewController {
         default: break
         }
         
-        
         counter = counterConstant
         
         uiview0.backgroundColor = UIColor.red
-        uiview1.backgroundColor = UIColor.red
+        
+        switch (currentAdvance % 4){
+        //switch (currentAdvance ){
+        case 1:
+            uiview1.backgroundColor = UIColor.red
+        case 2:
+            uiview2.backgroundColor = UIColor.red
+        case 3:
+            uiview3.backgroundColor = UIColor.red
+        case 0:
+            uiview4.backgroundColor = UIColor.red
+        default: break
+        }
+        image0.layer.cornerRadius = image0.frame.size.width/2
+        image0.clipsToBounds = true
+        image0.layer.borderColor = UIColor.red.cgColor
+        
+        image1.layer.cornerRadius = image1.frame.size.width/2
+        image1.clipsToBounds = true
+        
+        image2.layer.cornerRadius = image2.frame.size.width/2
+        image2.clipsToBounds = true
+        
+        image3.layer.cornerRadius = image3.frame.size.width/2
+        image3.clipsToBounds = true
+        
+        image4.layer.cornerRadius = image4.frame.size.width/2
+        image4.clipsToBounds = true
         
         counterLbl.text = String(counter)
-        image0.image = UIImage(named: exercises[0].image)
-        image1.image = UIImage(named: exercises[0].image)
-        image2.image = UIImage(named: exercises[1].image)
-        image3.image = UIImage(named: exercises[2].image)
-        image4.image = UIImage(named: exercises[3].image)
-        exerciseSegmentControl.selectedSegmentIndex = 0
-        labelText.text = "Place your right hand against the right side of your head and press against your head at the same time you push your head against your hand."
         
+        switch (currentAdvance % 4){
+        case 1:
+            uiview1.backgroundColor = UIColor.red
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
+        case 2:
+            
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.red
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
+        case 3:
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.red
+            uiview4.backgroundColor = UIColor.white
+        case 0:
+            
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.red
+        default: break
+        }
+        
+        if currentAdvance == 1 {
+            labelText.text = exercises[0].text
+            exerciseSegmentControl.selectedSegmentIndex = 0
+            image0.image = UIImage(named: exercises[0].image)
+            image1.image = UIImage(named: exercises[0].image)
+            image2.image = UIImage(named: exercises[1].image)
+            image3.image = UIImage(named: exercises[2].image)
+            image4.image = UIImage(named: exercises[3].image)
+        }
+        if  (currentAdvance > 1) && (currentAdvance <= 4){
+            exerciseSegmentControl.selectedSegmentIndex = 0
+            labelText.text = exercises[(currentAdvance - 1)].text
+            image0.image = UIImage(named: exercises[(currentAdvance - 1)].image)
+            image1.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex)].image)
+            image2.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 1].image)
+            image3.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 2].image)
+            image4.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 3].image)
+        }
+        else if  (currentAdvance >= 5) && (currentAdvance <= 8){
+            exerciseSegmentControl.selectedSegmentIndex = 1
+            
+            labelText.text = exercises[(currentAdvance - 1)].text
+            image0.image = UIImage(named: exercises[(currentAdvance - 1)].image)
+            image1.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex)].image)
+            image2.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 1].image)
+            image3.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 2].image)
+            image4.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 3].image)
+        }
+        else if  (currentAdvance >= 9) && (currentAdvance <= 12){
+            exerciseSegmentControl.selectedSegmentIndex = 2
+            labelText.text = exercises[(currentAdvance - 1)].text
+            image0.image = UIImage(named: exercises[(currentAdvance - 1)].image)
+            image1.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex)].image)
+            image2.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 1].image)
+            image3.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 2].image)
+            image4.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 3].image)
+        }
+        else if  (currentAdvance >= 13) && (currentAdvance <= 16){
+            exerciseSegmentControl.selectedSegmentIndex = 3
+            labelText.text = exercises[(currentAdvance - 1)].text
+            image0.image = UIImage(named: exercises[(currentAdvance - 1)].image)
+            image1.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex)].image)
+            image2.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 1].image)
+            image3.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 2].image)
+            image4.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 3].image)
+        }
+        else if  (currentAdvance >= 17) && (currentAdvance <= 20){
+            exerciseSegmentControl.selectedSegmentIndex = 4
+            labelText.text = exercises[(currentAdvance - 1)].text
+            image0.image = UIImage(named: exercises[(currentAdvance - 1)].image)
+            image1.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex)].image)
+            image2.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 1].image)
+            image3.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 2].image)
+            image4.image = UIImage(named: exercises[4*(exerciseSegmentControl.selectedSegmentIndex) + 3].image)
+        }
+   
         progress = KDCircularProgress(frame: CGRect(x: 60, y: 320, width: 255, height: 270))
         progress.startAngle = -90
         progress.progressThickness = 0.1
@@ -144,7 +244,7 @@ class LongMenuViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.timeElapsed), userInfo: nil, repeats: true)
         progressTimeAnimater()
-        //self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     internal func progressTimeAnimater() {
@@ -162,37 +262,33 @@ class LongMenuViewController: UIViewController {
         if counter > 0 {
             print("counter  : \(counter) currentAdvance : \(currentAdvance)  " )
             counter -= 1
+            if (currentAdvance == exercises.count ) && (counter == 1){
+                image0.image = #imageLiteral(resourceName: "eye4")
+                labelText.text =  "Rest your eyes by staring at the Picture for a while."
+                print("endExercise()")
+                progressTimeAnimater()
+                endExercise()
+            }
         }
+            
+            
         else if (counter == 0) {
             print("counter  : \(counter) currentAdvance : \(currentAdvance)  " )
             
-            if ((currentAdvance % 4) == 0) && (currentAdvance != 0){
+            if ((currentAdvance % 4) == 0){
                 exerciseSegmentControl.selectedSegmentIndex += 1
                 print("exerciseSegmentControl.selectedSegmentIndex += 1" )
             }
             
-            if ((currentAdvance % 4) == 0) && (currentAdvance == 0) && (exerciseSegmentControl.selectedSegmentIndex == 0){
-                
-                currentAdvance += 1
-                print("exerciseSegmentControl.selectedSegmentIndex += 1" )
-            }
             counter = counterConstant
             
             if  (exerciseSegmentControl.selectedSegmentIndex == 0){
                 
                 print("Seg : 0 neck => currentAdvance : \(currentAdvance) \n " )
                 
-                switch currentAdvance {
-                case 0:
-                    uiview1.backgroundColor = UIColor.red
-                    uiview4.backgroundColor = UIColor.white
-                    image0.image = UIImage(named: exercises[currentAdvance].image)
-                    labelText.text = exercises[currentAdvance].text
-                    currentAdvance += 1
-                    print("Seg : 0 Case 0: => currentAdvance : \(currentAdvance) \n " )
-                    progressTimeAnimater()
-                    
+                switch currentAdvance % 4 {
                 case 1:
+                    
                     uiview2.backgroundColor = UIColor.red
                     uiview1.backgroundColor = UIColor.white
                     image0.image = UIImage(named: exercises[currentAdvance].image)
@@ -202,6 +298,7 @@ class LongMenuViewController: UIViewController {
                     progressTimeAnimater()
                     
                 case 2:
+                    
                     uiview3.backgroundColor = UIColor.red
                     uiview2.backgroundColor = UIColor.white
                     image0.image = UIImage(named: exercises[currentAdvance].image)
@@ -213,10 +310,21 @@ class LongMenuViewController: UIViewController {
                 case 3:
                     uiview4.backgroundColor = UIColor.red
                     uiview3.backgroundColor = UIColor.white
+                    
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
                     print("Seg : 0 Case 3: => currentAdvance : \(currentAdvance) \n " )
+                    progressTimeAnimater()
+                    
+                case 0:
+                    uiview1.backgroundColor = UIColor.red
+                    uiview4.backgroundColor = UIColor.white
+                    
+                    image0.image = UIImage(named: exercises[currentAdvance].image)
+                    labelText.text = exercises[currentAdvance].text
+                    currentAdvance += 1
+                    print("Seg : 0 Case 4: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
                     
                 default: break
@@ -233,24 +341,17 @@ class LongMenuViewController: UIViewController {
                     image4.image = UIImage(named: exercises[currentAdvance + 3].image)
                 }
                 switch currentAdvance % 4 {
-                case 0:
-                    uiview1.backgroundColor = UIColor.red
-                    uiview4.backgroundColor = UIColor.white
-                    image0.image = UIImage(named: exercises[currentAdvance].image)
-                    labelText.text = exercises[currentAdvance].text
-                    currentAdvance += 1
-                    print("Seg : 1 Case 0: => currentAdvance : \(currentAdvance) \n " )
-                    progressTimeAnimater()
-                    
-                    
                 case 1:
+                    
                     uiview2.backgroundColor = UIColor.red
                     uiview1.backgroundColor = UIColor.white
+                    
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
                     print("Seg : 1 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
+                    
                     
                 case 2:
                     uiview3.backgroundColor = UIColor.red
@@ -267,8 +368,16 @@ class LongMenuViewController: UIViewController {
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
-                    //exerciseSegmentControl.selectedSegmentIndex += 1
                     print("Seg : 1 Case 3: => currentAdvance : \(currentAdvance) \n " )
+                    progressTimeAnimater()
+                    
+                case 0:
+                    uiview1.backgroundColor = UIColor.red
+                    uiview4.backgroundColor = UIColor.white
+                    image0.image = UIImage(named: exercises[currentAdvance].image)
+                    labelText.text = exercises[currentAdvance].text
+                    currentAdvance += 1
+                     print("Seg : 1 Case 4: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
                     
                     
@@ -284,24 +393,16 @@ class LongMenuViewController: UIViewController {
                     image4.image = UIImage(named: exercises[currentAdvance + 3].image)
                 }
                 switch currentAdvance % 4 {
-                case 0:
-                    uiview1.backgroundColor = UIColor.red
-                    uiview4.backgroundColor = UIColor.white
-                    image0.image = UIImage(named: exercises[currentAdvance].image)
-                    labelText.text = exercises[currentAdvance].text
-                    currentAdvance += 1
-                    print("Seg : 2 Case 0: => currentAdvance : \(currentAdvance) \n " )
-                    progressTimeAnimater()
-                    
-                    
                 case 1:
                     uiview2.backgroundColor = UIColor.red
                     uiview1.backgroundColor = UIColor.white
+                    
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
                     print("Seg : 2 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
+                    
                     
                 case 2:
                     uiview3.backgroundColor = UIColor.red
@@ -318,8 +419,17 @@ class LongMenuViewController: UIViewController {
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
-                    //exerciseSegmentControl.selectedSegmentIndex += 1
                     print("Seg : 2 Case 3: => currentAdvance : \(currentAdvance) \n " )
+                    progressTimeAnimater()
+                    
+                case 0:
+                    uiview1.backgroundColor = UIColor.red
+                    uiview4.backgroundColor = UIColor.white
+                    
+                    image0.image = UIImage(named: exercises[currentAdvance].image)
+                    labelText.text = exercises[currentAdvance].text
+                    currentAdvance += 1
+                     print("Seg : 2 Case 4: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
                     
                     
@@ -335,24 +445,16 @@ class LongMenuViewController: UIViewController {
                     image4.image = UIImage(named: exercises[currentAdvance + 3].image)
                 }
                 switch currentAdvance % 4 {
-                case 0:
-                    uiview1.backgroundColor = UIColor.red
-                    uiview4.backgroundColor = UIColor.white
-                    image0.image = UIImage(named: exercises[currentAdvance].image)
-                    labelText.text = exercises[currentAdvance].text
-                    currentAdvance += 1
-                    print("Seg : 3 Case 0: => currentAdvance : \(currentAdvance) \n " )
-                    progressTimeAnimater()
-                    
-                    
                 case 1:
                     uiview2.backgroundColor = UIColor.red
                     uiview1.backgroundColor = UIColor.white
+                    
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
                     print("Seg : 3 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
+                    
                     
                 case 2:
                     uiview3.backgroundColor = UIColor.red
@@ -369,8 +471,17 @@ class LongMenuViewController: UIViewController {
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
-                    //exerciseSegmentControl.selectedSegmentIndex += 1
                     print("Seg : 3 Case 3: => currentAdvance : \(currentAdvance) \n " )
+                    progressTimeAnimater()
+                    
+                case 0:
+                    uiview1.backgroundColor = UIColor.red
+                    uiview4.backgroundColor = UIColor.white
+                    image0.image = UIImage(named: exercises[currentAdvance].image)
+                    labelText.text = exercises[currentAdvance].text
+                    currentAdvance += 1
+                    //exerciseSegmentControl.selectedSegmentIndex += 1
+                    print("Seg : 3 Case 4: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
                     
                     
@@ -379,31 +490,25 @@ class LongMenuViewController: UIViewController {
             }
             else if (exerciseSegmentControl.selectedSegmentIndex == 4){
                 print(" Seg : 4 eye => currentAdvance : \(currentAdvance) \n " )
+                
                 if ((currentAdvance % 4) == 0){
                     image1.image = UIImage(named: exercises[currentAdvance].image)
                     image2.image = UIImage(named: exercises[currentAdvance + 1].image)
                     image3.image = UIImage(named: exercises[currentAdvance + 2].image)
                     image4.image = UIImage(named: exercises[currentAdvance + 3].image)
+                    progressTimeAnimater()
                 }
                 switch currentAdvance % 4 {
-                case 0:
-                    uiview1.backgroundColor = UIColor.red
-                    uiview4.backgroundColor = UIColor.white
-                    image0.image = UIImage(named: exercises[currentAdvance].image)
-                    labelText.text = exercises[currentAdvance].text
-                    currentAdvance += 1
-                    print("Seg : 4 Case 0: => currentAdvance : \(currentAdvance) \n " )
-                    progressTimeAnimater()
-                    
-                    
                 case 1:
                     uiview2.backgroundColor = UIColor.red
                     uiview1.backgroundColor = UIColor.white
+                    
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
                     print("Seg : 4 Case 1: => currentAdvance : \(currentAdvance) \n " )
                     progressTimeAnimater()
+                    
                     
                 case 2:
                     uiview3.backgroundColor = UIColor.red
@@ -420,15 +525,22 @@ class LongMenuViewController: UIViewController {
                     image0.image = UIImage(named: exercises[currentAdvance].image)
                     labelText.text = exercises[currentAdvance].text
                     currentAdvance += 1
-                    
                     print("Seg : 4 Case 3: => currentAdvance : \(currentAdvance) \n " )
+                    progressTimeAnimater()
+                    
+                    
+                    
+                case 0:
+                    uiview1.backgroundColor = UIColor.red
+                    uiview4.backgroundColor = UIColor.white
+                    
+                    image0.image = UIImage(named: exercises[currentAdvance].image)
+                    labelText.text = exercises[currentAdvance].text
+                    currentAdvance += 1
+                    
+                    print("Seg : 4 Case 4: => currentAdvance : \(currentAdvance) \n " )
                     print(" EYE : endExercise()")
                     
-                    if (currentAdvance == 20){
-                        print("endExercise()")
-                        
-                        endExercise()
-                    }
                     
                     
                 default: break
@@ -487,6 +599,11 @@ class LongMenuViewController: UIViewController {
             let image = UIImage(named: "start.png")
             stopButton.setImage(image, for: .normal)
             
+            uiview0.backgroundColor = UIColor.white
+            uiview1.backgroundColor = UIColor.white
+            uiview2.backgroundColor = UIColor.white
+            uiview3.backgroundColor = UIColor.white
+            uiview4.backgroundColor = UIColor.white
         }
         else if (stopButton.currentImage?.isEqual(UIImage(named:"start.png")))!{
             print("start")
@@ -495,6 +612,6 @@ class LongMenuViewController: UIViewController {
             self.viewDidLoad()
         }
     }
-       
+    
 }
 

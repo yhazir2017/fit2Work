@@ -25,6 +25,7 @@ class SettingsLengthVC : UIViewController{
         workoutTime = "10"
         exerciseLength.text = "3"
         workoutLength.text = workoutTime
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
     }
     
     

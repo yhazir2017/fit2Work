@@ -34,6 +34,7 @@ class SettingsViewController : UIViewController{
         
        // self.navigationController?.navigationBar.isHidden = true
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
         exerciseBriefingTxt.text =  "The Exercise briefing for the User after the settings"
         
 

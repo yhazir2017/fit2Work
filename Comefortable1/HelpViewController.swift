@@ -15,7 +15,7 @@ class HelpViewController : UIViewController {
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         openButton.addTarget(self.revealViewController(), action:#selector(SWRevealViewController.revealToggle(_:)), for:UIControlEvents.touchUpInside)
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
 
     }
 }

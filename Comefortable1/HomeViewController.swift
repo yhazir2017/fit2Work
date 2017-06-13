@@ -16,27 +16,46 @@ class HomeViewController : UIViewController {
     
     override  func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
+        print("HomeViewController - viewDidLoad")
+        if self.revealViewController() != nil {
+            Menu.target = self.revealViewController()
+            Menu.action = #selector(SWRevealViewController.revealToggle(_:))
+            // Do any additional setup after loading the view.
+
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+      
         openButton.addTarget(self.revealViewController(), action:#selector(SWRevealViewController.revealToggle(_:)), for:UIControlEvents.touchUpInside)
 
-        Menu.target = self.revealViewController()
-        Menu.action = #selector(SWRevealViewController.revealToggle(_:))
-        // Do any additional setup after loading the view.
-        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+  
         self.navigationController?.navigationBar.isHidden = true
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
 
     }
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    
-    
-    @IBAction func goShortExerciseVC(_ sender: Any) {
-        
+        print("HomeViewController - viewWillDisappear")
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        print("HomeViewController - viewWillAppear")
+        if self.revealViewController() != nil {
+            Menu.target = self.revealViewController()
+            Menu.action = #selector(SWRevealViewController.revealToggle(_:))
+            // Do any additional setup after loading the view.
+            
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.revealViewController().rearViewRevealWidth = 100
+          
+        }
+        
+        openButton.addTarget(self.revealViewController(), action:#selector(SWRevealViewController.revealToggle(_:)), for:UIControlEvents.touchUpInside)
+    }
+    
 }

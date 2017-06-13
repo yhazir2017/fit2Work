@@ -23,6 +23,7 @@ class MenuViewController: UIViewController {
         Open.action = #selector(SWRevealViewController.revealToggle(_:))
         // Do any additional setup after loading the view.
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
     }
 
     override func didReceiveMemoryWarning() {

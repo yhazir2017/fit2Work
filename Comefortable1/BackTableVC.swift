@@ -15,6 +15,7 @@ class BackTableVC : UITableViewController {
     var TableArray =  [String]()
     override func viewDidLoad() {
         TableArray = ["Home", "Settings","Help", "About"]
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"bckgrnd1.jpg")!)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
