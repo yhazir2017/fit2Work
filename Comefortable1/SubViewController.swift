@@ -46,7 +46,7 @@ class SubViewController: UIViewController {
     
     var timer = Timer()
    
-    var counterConstant = 4
+    var counterConstant = 10 //4
     var counter : Int = 0
     var currentAdvance = 0
     
@@ -201,11 +201,11 @@ class SubViewController: UIViewController {
         if counter > 0 {
             print("counter  : \(counter) currentAdvance : \(currentAdvance)  " )
             counter -= 1
-            if (currentAdvance == 4) && (counter == 1){
+            if (currentAdvance == 4) && (counter == 0){
                 image0.image = #imageLiteral(resourceName: "eye4")
                 textLabel.text =  "Rest your eyes by staring at the Picture for a while."
                 print("endExercise()")
-                progressTimeAnimater()
+                //progressTimeAnimater()
                 endExercise()
             }
         }
@@ -273,24 +273,37 @@ class SubViewController: UIViewController {
         counterLbl.text = String(counter)
         image0.image = #imageLiteral(resourceName: "eye4")
         textLabel.text =  "Rest your eyes by staring at the Picture for a while."
-        print("timer.invalidate()")
-        timer.invalidate()
-        perform(#selector(terminateAudio), with: nil, afterDelay: 20)
-        progress.animate(fromAngle: 0, toAngle: 360, duration: 10.0) { completed in
+        //progressTimeAnimater()
+
+        
+        perform(#selector(terminateAudio), with: nil, afterDelay: TimeInterval(counterConstant))
+        progress.animate(fromAngle: 360, toAngle: 0, duration: TimeInterval(counterConstant)) { completed in
             if completed {
                 print("animation stopped, completed")
-            } else {
+            } else
+            {
                 print("animation stopped, was interrupted")
+                
+                
             }
         }
         uiview0.backgroundColor = UIColor.white
         uiview5.backgroundColor = UIColor.white
+        print("timer.invalidate()")
+        timer.invalidate()
+        perform(#selector(goToCongratulations), with: nil, afterDelay: TimeInterval(counterConstant))
         
     }
     internal func terminateAudio(){
         audioPlayer.stop()
+    }
+    
+    internal func goToCongratulations(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
-        
+        let Congratulations = storyBoard.instantiateViewController(withIdentifier: "Congratulations") as! Congratulations
+        self.present(Congratulations, animated:true, completion:nil)
+
     }
     
     @IBAction func stop(_ sender: Any) {
@@ -311,7 +324,7 @@ class SubViewController: UIViewController {
             uiview2.backgroundColor = UIColor.white
             uiview3.backgroundColor = UIColor.white
             uiview4.backgroundColor = UIColor.white
-            progress.animate(fromAngle: 0, toAngle: 360, duration: 10.0) { completed in
+            progress.animate(fromAngle: 0, toAngle: 360, duration: TimeInterval(counterConstant)) { completed in
                 if completed {
                     print("animation stopped, completed")
                 } else {
@@ -332,22 +345,5 @@ class SubViewController: UIViewController {
         
     
 }
-
-
-//    @IBAction func onBackButtonClicked(_ sender: Any) {
-        
-//        let viewControllers: [UIViewController] = (self.navigationController?.viewControllers)!
-//
-//        self.navigationController!.popToViewController(viewControllers[viewControllers.count-2], animated: true);
-//        
-//        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController];
-//        self.navigationController!.popToViewController(viewControllers[0], animated: true);
-//        self.navigationController?.popToRootViewController(animated: true)
-        
-  //      if let composeViewController = self.navigationController?.viewControllers[1] {
-    //        self.navigationController?.popToViewController(composeViewController, animated: true)
-   //     }
-   // }
-    
     
 }

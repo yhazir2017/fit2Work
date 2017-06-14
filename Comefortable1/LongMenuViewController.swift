@@ -568,13 +568,20 @@ class LongMenuViewController: UIViewController {
             }
         }
         
+ perform(#selector(goToCongratulations), with: nil, afterDelay: TimeInterval(counterConstant))
     }
     internal func terminateAudio(){
         audioPlayer.stop()
+    
+    }
+    internal func goToCongratulations(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
+        let Congratulations = storyBoard.instantiateViewController(withIdentifier: "Congratulations") as! Congratulations
+        self.present(Congratulations, animated:true, completion:nil)
         
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

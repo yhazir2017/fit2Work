@@ -995,6 +995,17 @@ class SettingsRoutineVC : UIViewController{
         case 0:
             print("workoutSegmentValueChanged \(workoutSegmentControl.selectedSegmentIndex)")
             
+            datePickerTxt0.text = ""
+            datePickerTxt1.text = ""
+            datePickerTxt2.text = ""
+            datePickerTxt3.text = ""
+            datePickerTxt4.text = ""
+            datePickerTxt5.text = ""
+            datePickerTxt6.text = ""
+            datePickerTxt7.text = ""
+            datePickerTxt8.text = ""
+            datePickerTxt9.text = ""
+            
             datePickerTxt0.isHidden = false
             datePickerTxt1.isHidden = false
             datePickerTxt2.isHidden = true
@@ -1026,8 +1037,17 @@ class SettingsRoutineVC : UIViewController{
             
         case 1:
             print("workoutSegmentValueChanged \(sender.selectedSegmentIndex)")
+            
+            datePickerTxt0.text = ""
+            datePickerTxt1.text = ""
+            datePickerTxt2.text = ""
+            datePickerTxt3.text = ""
+            datePickerTxt4.text = ""
+            datePickerTxt5.text = ""
             datePickerTxt6.text = ""
             datePickerTxt7.text = ""
+            datePickerTxt8.text = ""
+            datePickerTxt9.text = ""
             
             datePickerTxt0.isHidden = false
             datePickerTxt1.isHidden = false
@@ -1065,9 +1085,16 @@ class SettingsRoutineVC : UIViewController{
         case 2:
             print("workoutSegmentValueChanged \(sender.selectedSegmentIndex)")
             
+            datePickerTxt0.text = ""
+            datePickerTxt1.text = ""
+            datePickerTxt2.text = ""
+            datePickerTxt3.text = ""
+            datePickerTxt4.text = ""
+            datePickerTxt5.text = ""
             datePickerTxt6.text = ""
             datePickerTxt7.text = ""
             datePickerTxt8.text = ""
+            datePickerTxt9.text = ""
             
             datePickerTxt0.isHidden = false
             datePickerTxt1.isHidden = false
